@@ -75,9 +75,13 @@
 	</div>
 
 <script type="text/javascript">
-	//Initial conditions
-	var id;
 
+
+
+
+	var highscore = 0;
+	var id;
+	var restart;
 
 	var targethorizontal = 0
 	var targetvertical = 0
@@ -87,56 +91,24 @@
 	generateObject()
 
 
-/*		document.onkeydown = checkKey;
-	function checkKey(e)
-	{
-		e = e || window.event;
-		if (e.keyCode === 38)
-		{
-        	// up arrow
-        	clearInterval(id)
-       		id = setInterval(upGo,500)
-    	}
-    	else if (e.keyCode === 40)
-    	{
-        	// down arrow
-        	clearInterval(id)
-					id = setInterval(downGo,500)
-
-    	}
-    	else if (e.keyCode === 37)
-    	{
-       		// left arrow
-
-       		clearInterval(id)
-       		id = setInterval(leftGo,500)
-    	}
-    	else if (e.keyCode === 39)
-    	{
-       		// right arrow
-       		clearInterval(id)
-       		id = setInterval(rightGo,500)
-    	}
-
-}*/
-
 	var rightPos = 0
 	var rightposabs = rightPos * 50
 	elem = document.getElementById("animate")
 	elem.style.marginLeft = rightposabs + 'px'
-	//var scoreDiv = document.getElementById("scorediv")
+
 
 	var downpos = 0
 	var downposabsolute = 0;
 
-
+	
 
 	function upGo()
 	{
 		if(downpos == 0)
 		{
-			alert('GameOver')
-			downpos=1
+			restart = confirm('GameOver\nStart Again !!')
+			location.reload()
+
 		}
 		else
 		{
@@ -147,10 +119,7 @@
 			if((downposabsolute === targetvertical) && (rightposabs === targethorizontal))
 			{
 				setTimeout(generateObject,1)
-				/*targetvertical = Math.floor(Math.random()*7) * 50
-				targethorizontal = Math.floor(Math.random()*7) * 50
-				obs.style.marginTop = targethorizontal + 'px'
-				obs.style.marginLeft = targetvertical + 'px'*/
+
 			}
 		}
 	}
@@ -160,7 +129,8 @@
 	{
 		if(downpos == 7)
 		{
-			alert('GameOver')
+			restart = confirm('GameOver\nStart Again !!')
+			location.reload()
 		}
 		else
 		{
@@ -170,10 +140,7 @@
 			if((downposabsolute === targetvertical) && (rightposabs === targethorizontal))
 			{
 				setTimeout(generateObject,1)
-				/*targetvertical = Math.floor(Math.random()*7) * 50
-				targethorizontal = Math.floor(Math.random()*7) * 50
-				obs.style.marginTop = targethorizontal + 'px'
-				obs.style.marginLeft = targetvertical + 'px'*/
+
 			}
 		}
 	}
@@ -183,7 +150,9 @@
 	{
 		if(rightPos == 7)
 		{
-			alert('GameOver')
+			restart = confirm('GameOver\nStart Again !!')
+			location.reload()
+
 		}
 		else
 		{
@@ -193,10 +162,7 @@
 			if((downposabsolute === targetvertical) && (rightposabs === targethorizontal))
 			{
 				setTimeout(generateObject,1)
-				/*targetvertical = Math.floor(Math.random()*7) * 50
-				targethorizontal = Math.floor(Math.random()*7) * 50
-				obs.style.marginTop = targethorizontal + 'px'
-				obs.style.marginLeft = targetvertical + 'px'*/
+
 			}
 		}
 	}
@@ -206,7 +172,8 @@
 	{
 		if(rightPos == 0)
 		{
-			alert('GameOver')
+			restart = confirm('GameOver\nStart Again !!')
+			location.reload()
 		}
 		else
 		{
@@ -216,10 +183,7 @@
 			if((downposabsolute === targetvertical) && (rightposabs === targethorizontal))
 			{
 					setTimeout(generateObject,1)
-					/*targetvertical = Math.floor(Math.random()*7) * 50
-					targethorizontal = Math.floor(Math.random()*7) * 50
-					obs.style.marginTop = targethorizontal + 'px'
-					obs.style.marginLeft = targetvertical + 'px'*/
+
 			}
 	 }
 }
@@ -256,11 +220,6 @@
 		clearInterval(id)
 		id = setInterval(rightGo,500)
 	});
-
-
-
-
-
 
 </script>
 </body>
