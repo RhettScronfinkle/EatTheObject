@@ -131,9 +131,11 @@
 		rightPos = 0
 		rightposabs = rightPos * 50
 		elem.style.marginLeft = rightposabs + 'px'
+
 		document.getElementById("highscoreh").innerHTML = "High Score:"+ highscore;
 		downpos = 0
 		downposabsolute = 0;
+		elem.style.marginTop = downposabsolute + 'px'
 }
 
 
@@ -158,8 +160,8 @@
 			elem.style.marginTop = downposabsolute + 'px'
 			if((downposabsolute === targetvertical) && (rightposabs === targethorizontal))
 			{
-				setTimeout(generateObject,1)
-
+				//setTimeout(generateObject,1)
+				generateObject()
 			}
 		}
 	}
@@ -181,7 +183,8 @@
 			elem.style.marginTop = downposabsolute + 'px'
 			if((downposabsolute === targetvertical) && (rightposabs === targethorizontal))
 			{
-				setTimeout(generateObject,1)
+				//setTimeout(generateObject,1)
+				generateObject()
 
 			}
 		}
@@ -205,7 +208,8 @@
 			elem.style.marginLeft = rightposabs + 'px'
 			if((downposabsolute === targetvertical) && (rightposabs === targethorizontal))
 			{
-				setTimeout(generateObject,1)
+				//setTimeout(generateObject,1)
+				generateObject()
 
 			}
 		}
@@ -229,7 +233,8 @@
 			elem.style.marginLeft = rightposabs + 'px'
 			if((downposabsolute === targetvertical) && (rightposabs === targethorizontal))
 			{
-					setTimeout(generateObject,1)
+				//setTimeout(generateObject,1)
+				generateObject()
 
 			}
 	 }
