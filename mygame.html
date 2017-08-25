@@ -6,7 +6,7 @@
 
 		#container
 		{
-			width:400px;
+			width:800px;
 			height: 400px;
 			position: relative;
 			background: yellow;
@@ -15,6 +15,7 @@
 
 		#animate
 		{
+
 			width:50px;
 			height: 50px;
 			position: absolute;
@@ -25,6 +26,7 @@
 
 		#obsta
 		{
+			border-radius: 50px;
 			width:50px;
 			height: 50px;
 			position: absolute;
@@ -33,6 +35,7 @@
 
 		#scorediv
 		{
+
 			width:70px;
 			height: 70px;
 			border-style: solid;
@@ -40,7 +43,7 @@
 			background-color: rgb(66, 235, 244);
 			text-align: center;
 			font-size: 50px;
-
+			display:inline;
 		}
 
 		button
@@ -63,6 +66,11 @@
 
 		}
 
+		#directions
+		{
+			display:inline;
+		}
+
 
 	</style>
 </head>
@@ -72,7 +80,7 @@
 		<div id="obsta">.</div>
 	</div>
 
-
+	<div id="directions">
 		<table>
 			<tr>
 				<td></td><td><button type="button" name="button" id="upb">Up</button></td><td></td>
@@ -84,6 +92,7 @@
 				<td></td><td><button type="button" name="button" id="downb">Down</button></td><td></td>
 			</tr>
 		</table>
+</div>
 
 	<div id="scorediv"></div>
 	<div id="highscoreh"></div>
@@ -160,8 +169,8 @@
 			elem.style.marginTop = downposabsolute + 'px'
 			if((downposabsolute === targetvertical) && (rightposabs === targethorizontal))
 			{
-				//setTimeout(generateObject,1)
-				generateObject()
+				setTimeout(generateObject,500)
+				//generateObject()
 			}
 		}
 	}
@@ -183,8 +192,8 @@
 			elem.style.marginTop = downposabsolute + 'px'
 			if((downposabsolute === targetvertical) && (rightposabs === targethorizontal))
 			{
-				//setTimeout(generateObject,1)
-				generateObject()
+				setTimeout(generateObject,500)
+				//generateObject()
 
 			}
 		}
@@ -193,7 +202,7 @@
 
 	function rightGo()
 	{
-		if(rightPos == 7)
+		if(rightPos == 15)
 		{
 			restart = confirm('GameOver\nStart Again !!')
 			initialization()
@@ -208,8 +217,8 @@
 			elem.style.marginLeft = rightposabs + 'px'
 			if((downposabsolute === targetvertical) && (rightposabs === targethorizontal))
 			{
-				//setTimeout(generateObject,1)
-				generateObject()
+				setTimeout(generateObject,500)
+				//generateObject()
 
 			}
 		}
@@ -233,8 +242,8 @@
 			elem.style.marginLeft = rightposabs + 'px'
 			if((downposabsolute === targetvertical) && (rightposabs === targethorizontal))
 			{
-				//setTimeout(generateObject,1)
-				generateObject()
+				setTimeout(generateObject,500)
+				//generateObject()
 
 			}
 	 }
@@ -245,7 +254,7 @@
 	function generateObject()
 	{
 		targetvertical = Math.floor(Math.random()*7) * 50
-		targethorizontal = Math.floor(Math.random()*7) * 50
+		targethorizontal = Math.floor(Math.random()*15) * 50
 		obs.style.marginTop = targetvertical + 'px'
 		obs.style.marginLeft = targethorizontal + 'px'
 		score = score+1
@@ -272,6 +281,40 @@
 		clearInterval(id)
 		id = setInterval(rightGo,500)
 	});
+
+	document.onkeydown = checkKey;
+
+	function checkKey(e)
+	{
+		e = e || window.event;
+		if (e.keyCode === 38)
+		{
+        	// up arrow
+        	clearInterval(id)
+       		id = setInterval(upGo,500)
+    	}
+    	else if (e.keyCode === 40)
+    	{
+        	// down arrow
+        	clearInterval(id)
+					id = setInterval(downGo,500)
+
+    	}
+    	else if (e.keyCode === 37)
+    	{
+       		// left arrow
+
+       		clearInterval(id)
+       		id = setInterval(leftGo,500)
+    	}
+    	else if (e.keyCode === 39)
+    	{
+       		// right arrow
+       		clearInterval(id)
+       		id = setInterval(rightGo,500)
+    	}
+
+}
 
 </script>
 </body>
