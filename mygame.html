@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+
+		#container
+		{
+			width:400px;
+			height: 400px;
+			position: relative;
+			background: yellow;
+
+		}
+
+		#animate
+		{
+			width:50px;
+			height: 50px;
+			position: absolute;
+			background:red;
+			transition:margin-left 1s, margin-top 1s;
+		}
+
+
+		#obsta
+		{
+			width:50px;
+			height: 50px;
+			position: absolute;
+			background:green;
+		}
+
+		#scorediv
+		{
+			width:70px;
+			height: 70px;
+			border-style: solid;
+			border-width: 10;
+			background-color: rgb(66, 235, 244);
+			text-align: center;
+			font-size: 50px;
+
+		}
+
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="animate">.</div>
+		<div id="obsta">.</div>
+	</div>
+
+	<div id="scorediv">
+
+	</div>
+
+<script type="text/javascript">
+	//Initial conditions
+
+	document.onkeydown = checkKey;
+
+	var targethorizontal = 0
+	var targetvertical = 0
+	var score=-1
+
+	obs = document.getElementById("obsta")
+	generateObject()
+
+	function checkKey(e)
+	{
+		e = e || window.event;
+		if (e.keyCode === 38)
+		{
+        	// up arrow
+        	clearInterval(id)
+       		id = setInterval(upGo,500)
+    	}
+    	else if (e.keyCode === 40)
+    	{
+        	// down arrow
+        	clearInterval(id)
+					id = setInterval(downGo,500)
+
+    	}
+    	else if (e.keyCode === 37)
+    	{
+       		// left arrow
+
+       		clearInterval(id)
+       		id = setInterval(leftGo,500)
+    	}
+    	else if (e.keyCode === 39)
+    	{
+       		// right arrow
+       		clearInterval(id)
+       		id = setInterval(rightGo,500)
+    	}
+
+}
+
+
+
+
+
+
+	var rightPos = 0
+	var rightposabs = rightPos * 50
+	elem = document.getElementById("animate")
+	elem.style.marginLeft = rightposabs + 'px'
+	//var scoreDiv = document.getElementById("scorediv")
+
+	var downpos = 0
+	var downposabsolute = 0;
+
+	var id;
+
+	function upGo()
+	{
+		if(downpos == 0)
+		{
+			alert('GameOver')
+			downpos=1
+		}
+		else
+		{
+			downpos--
+
+			downposabsolute = downpos * 50
+			elem.style.marginTop = downposabsolute + 'px'
+			if((downposabsolute === targetvertical) && (rightposabs === targethorizontal))
+			{
+				setTimeout(generateObject,1)
+				/*targetvertical = Math.floor(Math.random()*7) * 50
+				targethorizontal = Math.floor(Math.random()*7) * 50
+				obs.style.marginTop = targethorizontal + 'px'
+				obs.style.marginLeft = targetvertical + 'px'*/
+			}
+		}
+	}
+
+
+	function downGo()
+	{
+		if(downpos == 7)
+		{
+			alert('GameOver')
+		}
+		else
+		{
+			downpos++
+			downposabsolute = downpos * 50
+			elem.style.marginTop = downposabsolute + 'px'
+			if((downposabsolute === targetvertical) && (rightposabs === targethorizontal))
+			{
+				setTimeout(generateObject,1)
+				/*targetvertical = Math.floor(Math.random()*7) * 50
+				targethorizontal = Math.floor(Math.random()*7) * 50
+				obs.style.marginTop = targethorizontal + 'px'
+				obs.style.marginLeft = targetvertical + 'px'*/
+			}
+		}
+	}
+
+
+	function rightGo()
+	{
+		if(rightPos == 7)
+		{
+			alert('GameOver')
+		}
+		else
+		{
+			rightPos++
+			rightposabs = rightPos * 50
+			elem.style.marginLeft = rightposabs + 'px'
+			if((downposabsolute === targetvertical) && (rightposabs === targethorizontal))
+			{
+				setTimeout(generateObject,1)
+				/*targetvertical = Math.floor(Math.random()*7) * 50
+				targethorizontal = Math.floor(Math.random()*7) * 50
+				obs.style.marginTop = targethorizontal + 'px'
+				obs.style.marginLeft = targetvertical + 'px'*/
+			}
+		}
+	}
+
+
+	function leftGo()
+	{
+		if(rightPos == 0)
+		{
+			alert('GameOver')
+		}
+		else
+		{
+			rightPos--
+			rightposabs = rightPos * 50
+			elem.style.marginLeft = rightposabs + 'px'
+			if((downposabsolute === targetvertical) && (rightposabs === targethorizontal))
+			{
+					setTimeout(generateObject,1)
+					/*targetvertical = Math.floor(Math.random()*7) * 50
+					targethorizontal = Math.floor(Math.random()*7) * 50
+					obs.style.marginTop = targethorizontal + 'px'
+					obs.style.marginLeft = targetvertical + 'px'*/
+			}
+	 }
+}
+
+
+
+	function generateObject()
+	{
+		targetvertical = Math.floor(Math.random()*7) * 50
+		targethorizontal = Math.floor(Math.random()*7) * 50
+		obs.style.marginTop = targetvertical + 'px'
+		obs.style.marginLeft = targethorizontal + 'px'
+		score = score+1
+		var temp = score.toString()
+		document.getElementById("scorediv").innerHTML = temp;
+
+
+	}
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
