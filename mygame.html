@@ -40,7 +40,7 @@
 			background-color: rgb(66, 235, 244);
 			text-align: center;
 			font-size: 50px;
-			display:;
+
 		}
 
 		button
@@ -49,6 +49,21 @@
 			padding: 10px;
 			font-size: 10px;
 		}
+
+		#highscoreh
+		{
+			width:150px;
+			height: 70px;
+			border-style: solid;
+			border-width: 10;
+			background-color: rgb(66, 235, 244);
+			text-align: center;
+			font-size: 50px;
+			display: inline;
+
+		}
+
+
 	</style>
 </head>
 <body>
@@ -70,9 +85,8 @@
 			</tr>
 		</table>
 
-	<div id="scorediv">
-
-	</div>
+	<div id="scorediv"></div>
+	<div id="highscoreh"></div>
 
 <script type="text/javascript">
 
@@ -83,31 +97,57 @@
 	var id;
 	var restart;
 
-	var targethorizontal = 0
-	var targetvertical = 0
-	var score=-1
+	var targethorizontal;
+	var targetvertical;
+	var score;
 
 	obs = document.getElementById("obsta")
+
+
+
+	var rightPos;
+	var rightposabs;
+	elem = document.getElementById("animate")
+
+
+
+	var downpos;
+	var downposabsolute;
+
+	initialization()
 	generateObject()
 
+	function initialization()
+	{
 
-	var rightPos = 0
-	var rightposabs = rightPos * 50
-	elem = document.getElementById("animate")
-	elem.style.marginLeft = rightposabs + 'px'
+		targethorizontal = 0
+	  targetvertical = 0
+		if(score > highscore)
+		{
+			highscore = score
+			alert("New High Score")
+		}
+	  score=-1
+		rightPos = 0
+		rightposabs = rightPos * 50
+		elem.style.marginLeft = rightposabs + 'px'
+		document.getElementById("highscoreh").innerHTML = "High Score:"+ highscore;
+		downpos = 0
+		downposabsolute = 0;
+}
 
 
-	var downpos = 0
-	var downposabsolute = 0;
 
-	
+
 
 	function upGo()
 	{
 		if(downpos == 0)
 		{
 			restart = confirm('GameOver\nStart Again !!')
-			location.reload()
+			initialization()
+			generateObject()
+			clearInterval(id)
 
 		}
 		else
@@ -130,7 +170,9 @@
 		if(downpos == 7)
 		{
 			restart = confirm('GameOver\nStart Again !!')
-			location.reload()
+			initialization()
+			generateObject()
+			clearInterval(id)
 		}
 		else
 		{
@@ -151,7 +193,9 @@
 		if(rightPos == 7)
 		{
 			restart = confirm('GameOver\nStart Again !!')
-			location.reload()
+			initialization()
+			generateObject()
+			clearInterval(id)
 
 		}
 		else
@@ -173,7 +217,10 @@
 		if(rightPos == 0)
 		{
 			restart = confirm('GameOver\nStart Again !!')
-			location.reload()
+			//location.reload()
+			initialization()
+			generateObject()
+			clearInterval(id)
 		}
 		else
 		{
