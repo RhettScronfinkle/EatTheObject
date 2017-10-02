@@ -101,7 +101,7 @@
 
 
 
-
+  var pauseState = 0;
 	var highscore = 0;
 	var id;
 	var restart;
@@ -112,7 +112,15 @@
 
 	obs = document.getElementById("obsta")
 
+	functionarray = {
+		'l':leftGo,
+		'r':rightGo,
+		'd':downGo,
+		'u':upGo
+	}
 
+	//to resume from Pause
+	var pauseFrom = '';
 
 	var rightPos;
 	var rightposabs;
@@ -290,12 +298,14 @@
 		if (e.keyCode === 38)
 		{
         	// up arrow
+					pauseFrom = 'u'
         	clearInterval(id)
        		id = setInterval(upGo,500)
     	}
     	else if (e.keyCode === 40)
     	{
         	// down arrow
+					pauseFrom = 'd'
         	clearInterval(id)
 					id = setInterval(downGo,500)
 
@@ -303,16 +313,32 @@
     	else if (e.keyCode === 37)
     	{
        		// left arrow
-
+					pauseFrom = 'l'
        		clearInterval(id)
        		id = setInterval(leftGo,500)
     	}
     	else if (e.keyCode === 39)
     	{
        		// right arrow
+					pauseFrom = 'r'
        		clearInterval(id)
        		id = setInterval(rightGo,500)
     	}
+			else if (e.keyCode == 32 && pauseState == 0)
+			{
+					//pause
+					clearInterval(id)
+					pauseState = 1
+			}
+			else if (e.keyCode == 32 && pauseState == 1)
+			{
+				 //resume from pause
+
+				 clearInterval(id)
+				 id = setInterval(functionarray[pauseFrom],500)
+				 pauseState = 0
+
+			}
 
 }
 
